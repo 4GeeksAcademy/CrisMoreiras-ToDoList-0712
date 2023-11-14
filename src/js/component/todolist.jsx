@@ -1,9 +1,10 @@
 import React, {useState} from "react";
 
+
 const ToDo = () => {
 
     const [inputToDo, setInputToDo] = useState ("")
-    const [lisToDo, setListToDo] = useState([])
+    const [listToDo, setListToDo] = useState([])
 
 	return (
 		<div className="container">
@@ -13,13 +14,30 @@ const ToDo = () => {
                     <input type="text" placeholder="Remember to do..."
                     onChange={(e)=>setInputToDo(e.target.value)}
                     value={inputToDo}
-                    onKeyDown={(e)=> e.key="Enter" setListToDo(lisToDo.concat(inputToDo)) : null}>
+                    onKeyDown={(e) => {
+                        if (e.key === "Enter") { 
+                            setListToDo(listToDo.concat(inputToDo))
+                            setInputToDo(""); }
+                            }}>
                     </input>
                 </li>
-                <li>
-                    
-                </li>
+
+                {listToDo.map((item, index) => (
+
+                    <li>
+                        
+                        {item}{""}
+
+                        <a onClick={() => setListToDo(listToDo.filter((t,currentIndex) => index != currentIndex))
+                        }>
+                            🗑️
+                        </a>                
+                            
+                    </li>
+
+                ))}       
             </ul>
+            <div>{listToDo.length} tasks.</div>
 		</div>
 	);
 };
