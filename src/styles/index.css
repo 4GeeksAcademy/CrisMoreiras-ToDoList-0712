@@ -1,15 +1,12 @@
 
 .container {
-    text-align: center;
     margin-top: 100px;
-    width: 50%;
+    width: 30%;
 }
-
-
 
 input {
     border: none;
-    text-align: center;   
+    text-align: left;   
 }
 
 ul li {
@@ -19,6 +16,10 @@ ul li {
     width: 100%;
 }
 
-p{
-    padding: 0%;
+h1 {
+    text-align: center;
+}
+
+p {
+    padding-left: 40px;
 }
