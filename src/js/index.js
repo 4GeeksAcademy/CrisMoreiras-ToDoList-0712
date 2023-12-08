@@ -10,6 +10,9 @@ import Home from "./component/home.jsx";
 import ToDo from "./component/todolist.jsx";
 import Test from "./component/test.jsx";
 import ToDoApi from "./component/todoapi.jsx";
+import ToDoApi2 from "./component/todoapi2.jsx";
+
+
 
 //render your react application
-ReactDOM.render(<ToDoApi />, document.querySelector("#app"));
+ReactDOM.render(<ToDoApi2 />, document.querySelector("#app"));
