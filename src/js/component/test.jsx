@@ -14,10 +14,10 @@ const Test = () => {
         .then((data)=> setList(data))    
         }
         
-    useEffect (()=>{
+    //useEffect (()=>{
         //console.log ("cargo componente")
-        getList()
-    },[])
+        //getList()
+    //},[])
 
     function creartarea (){
         console.log (creartarea)
@@ -37,7 +37,7 @@ const Test = () => {
 
 		<div className="text-center">
 			<h1 className="text-center mt-5">TEST!</h1>
-            <button onClick={getList}>Traer Tareas</button>
+            <button onClick={getList}>Bring List</button>
             <button onClick={creartarea}>Crear Tarea</button>
             {list.map((item)=> <p>{item.label}</p>)}  
 		</div>

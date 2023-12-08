@@ -9,6 +9,7 @@ import "../styles/index.css";
 import Home from "./component/home.jsx";
 import ToDo from "./component/todolist.jsx";
 import Test from "./component/test.jsx";
+import ToDoApi from "./component/todoapi.jsx";
 
 //render your react application
-ReactDOM.render(<Test />, document.querySelector("#app"));
+ReactDOM.render(<ToDoApi />, document.querySelector("#app"));
