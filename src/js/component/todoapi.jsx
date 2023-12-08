@@ -6,12 +6,25 @@ const ToDoApi = () => {
     const [listToDo, setListToDo] = useState([])
 
     const [list, setList] = useState ([])
+    const [task, setTask] = useState ([])
+    
    
     function getList(){
-        console.log("getList")
+        //console.log("getList")
         fetch("https://playground.4geeks.com/apis/fake/todos/user/criscasanovas")
         .then((response)=>response.json())
         .then((data)=> setList(data))    
+        }
+
+    function createTask (){
+        const requestOptions = {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify([])
+        };
+        fetch("https://playground.4geeks.com/apis/fake/todos/user/criscasanovas2",requestOptions)
+        .then((response)=>response.json())
+        .then((data)=>setTask(data))
         }
 
 	return (
@@ -22,12 +35,12 @@ const ToDoApi = () => {
 			<ul>
                 <li>
                     <input type="text" placeholder="Remember to do..."
-                    onChange={(e)=>setInputToDo(e.target.value)}
-                    value={inputToDo}
+                    onChange={(e)=>setTask(e.target.value)}
+                    value={task}
                     onKeyDown={(e) => {
                         if (e.key === "Enter") { 
-                            setList(list.concat(inputToDo))
-                            setInputToDo(""); }
+                            setList(list.concat(task))
+                            setTask(""); }
                             }}>
                     </input>
                 </li>
@@ -38,15 +51,15 @@ const ToDoApi = () => {
                         <div className="form-check form-check-inline float-start">
                             <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault"/>
                             <label className="form-check-label" for="flexCheckDefault"></label>
-                        </div>
-                        
-                        {list.map((item)=> <p>{item.label}</p>)}  
+                        </div> 
 
                             <button type="button" className="border border-0 float-end"
                             onClick={() => setList(list.filter((t,currentIndex) => index != currentIndex))
                             }>
                             🗑️
-                            </button>                 
+                            </button> 
+
+                            {list.map((item)=> <p>{item.label}</p>)}                 
                         
                     </li>
                 ))}       
