@@ -16,6 +16,20 @@ const ToDoApi2 = () => {
             setList(data);
             setTask(data.map(item => item.label));
         })};    
+
+        function newTask(){
+
+            
+            fetch("https://playground.4geeks.com/apis/fake/todos/user/criscasanovas"), {
+                method: "PUT",
+                body: JSON.stringify(allTasks),
+                headers: {"Content-Type": "application/json"},
+            }
+            .then((response)=>response.json())
+            .then((data)=> {
+                setList(data);
+                setInputTask(data.map(item => item.label));
+        })};    
           
         
 
