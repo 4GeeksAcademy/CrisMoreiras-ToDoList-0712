@@ -1,43 +1,80 @@
 import React, {useState, useEffect} from "react";
 
 const ToDoApi2 = () => {
-
+    const apiUrl = ["https://playground.4geeks.com/apis/fake/todos/user/criscasanovas"]
     const [inputTask, setInputTask] = useState ("")
     const [list, setList] = useState ([])
-    const [task, setTask] = useState ([])
+    //const [task, setTask] = useState ([])
     
-   
-   
-    function getList(){
+    function createUser(){
         //console.log("getList")
-        fetch("https://playground.4geeks.com/apis/fake/todos/user/criscasanovas")
-        .then((response)=>response.json())
-        .then((data)=> {
-            setList(data);
-            setTask(data.map(item => item.label));
-        })};    
-
-        function newTask(){
-
-            
-            fetch("https://playground.4geeks.com/apis/fake/todos/user/criscasanovas"), {
-                method: "PUT",
-                body: JSON.stringify(allTasks),
-                headers: {"Content-Type": "application/json"},
+        fetch(apiUrl, {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify([])
+        })
+            .then(response => response.json())
+            .then(data => console.log(data))
+    }
+   
+    const getAllTask = async () => {
+        try {
+            const response = await fetch (apiUrl);
+            if (response.ok){
+                const data = await response.json();
+                console.log(data);
+                setList (data);
             }
-            .then((response)=>response.json())
-            .then((data)=> {
-                setList(data);
-                setInputTask(data.map(item => item.label));
-        })};    
+            else {
+                if (response.status === 404) {
+                    console.log("usuario no encontrado");
+                    createUser();
+
+                }
+            }   
+        }
+        catch (error) {
+            console.error
+        }
+    }
+
+    const addTask = async (value) => {
+        try {
+            const newTask = {
+                label: value,
+                done: false,
+            };
+            const updatedTask = [...list, newTask];
+            const putOptions = { 
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify (updatedTask)
+            };
+            const putResponse = await fetch (apiUrl, putOptions);
+            if (putResponse.ok) {
+                setInputValue ("");
+                getAllTask();
+            }
+            else {
+                console.error ("error al agregar");
+            }
+        }
+        catch (error) {
+            console.error ("error al agregar tarea", error)
+        }
+    }  
           
-        
+        useEffect (() => {
+            getAllTask();
+        },[])
 
 	return (
         <>
 		<div className="container">
            
-            <button onClick={getList}>Bring List</button>
+            <button onClick={getAllTask}>Bring List</button>
              
 			<ul>
                 <li>
@@ -48,6 +85,7 @@ const ToDoApi2 = () => {
                         if (e.key === "Enter") { 
                             setList(list.concat(inputTask))
                             setInputTask(""); }
+                            //addTask(inputValue) asegurarme de que todo esto funcione
                             }}>
                     </input>
                 </li>
