@@ -7,7 +7,6 @@ const ToDoApi2 = () => {
     //const [task, setTask] = useState ([])
     
     function createUser(){
-        //console.log("getList")
         fetch(apiUrl, {
             method: 'POST',
             headers: {
@@ -31,7 +30,6 @@ const ToDoApi2 = () => {
                 if (response.status === 404) {
                     console.log("usuario no encontrado");
                     createUser();
-
                 }
             }   
         }
@@ -54,7 +52,7 @@ const ToDoApi2 = () => {
             };
             const putResponse = await fetch (apiUrl, putOptions);
             if (putResponse.ok) {
-                setInputValue ("");
+                setInputTask ("");
                 getAllTask();
             }
             else {
@@ -83,7 +81,8 @@ const ToDoApi2 = () => {
                     value={inputTask}
                     onKeyDown={(e) => {
                         if (e.key === "Enter") { 
-                            setList(list.concat(inputTask))
+                            
+                            addTask(inputTask);
                             setInputTask(""); }
                             //addTask(inputValue) asegurarme de que todo esto funcione
                             }}>
