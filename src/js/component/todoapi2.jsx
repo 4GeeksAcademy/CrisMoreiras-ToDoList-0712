@@ -4,8 +4,7 @@ const ToDoApi2 = () => {
     const apiUrl = ["https://playground.4geeks.com/apis/fake/todos/user/criscasanovas"]
     const [inputTask, setInputTask] = useState ("")
     const [list, setList] = useState ([])
-    //const [task, setTask] = useState ([])
-    
+      
     function createUser(){
         fetch(apiUrl, {
             method: 'POST',
@@ -16,6 +15,18 @@ const ToDoApi2 = () => {
         })
             .then(response => response.json())
             .then(data => console.log(data))
+    }
+
+    function deleteAll(){
+        fetch(apiUrl, {
+            method: 'DELETE',
+            headers: {
+                "Content-Type": "application/json"
+            },
+        })
+        .then(response => response.json())
+        .then(data => setList(data))
+            
     }
    
     const getAllTask = async () => {
@@ -62,18 +73,19 @@ const ToDoApi2 = () => {
         catch (error) {
             console.error ("error al agregar tarea", error)
         }
-    }  
-          
-        useEffect (() => {
-            getAllTask();
-        },[])
+    }
+     
+        //useEffect (() => {
+        //    getAllTask();
+        //},[])
 
 	return (
         <>
 		<div className="container">
            
             <button onClick={getAllTask}>Bring List</button>
-             
+            <button onClick={deleteAll}>Delete All</button>
+                        
 			<ul>
                 <li>
                     <input type="text" placeholder="Remember to do..."
@@ -81,10 +93,8 @@ const ToDoApi2 = () => {
                     value={inputTask}
                     onKeyDown={(e) => {
                         if (e.key === "Enter") { 
-                            
                             addTask(inputTask);
                             setInputTask(""); }
-                            //addTask(inputValue) asegurarme de que todo esto funcione
                             }}>
                     </input>
                 </li>
