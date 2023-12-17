@@ -25,9 +25,16 @@ const ToDoApi2 = () => {
             },
         })
         .then(response => response.json())
-        .then(data => setList(data))
-            
-    }
+        .then(data => {
+            setList([]);
+            createUser()
+        })
+        }
+
+        function deleteOne(index){
+            const deleteTask = list.filter( (item,i) => index !== i );
+            setList(deleteTask);
+            }
    
     const getAllTask = async () => {
         try {
@@ -108,8 +115,7 @@ const ToDoApi2 = () => {
                         </div> 
                         <p>{item.label}</p>
                         <button type="button" className="border border-0 float-end"
-                        onClick={() => setList(list.filter((t,currentIndex) => index != currentIndex))
-                        }>
+                        onClick={()=>deleteOne(index)}>
                         🗑️
                         </button>     
                     </li>
