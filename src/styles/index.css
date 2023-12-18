@@ -1,7 +1,13 @@
 
 .container {
     margin-top: 100px;
-    width: 30%;
+    width: 40%;
+}
+
+.button_bring{
+    padding-left: 40px;
+    padding-bottom: 15px;
+    padding-top: 10px;
 }
 
 input {
@@ -14,6 +20,7 @@ ul li {
     padding: 5px;
     border: 1px solid gray;
     width: 100%;
+    
 }
 
 h1 {
@@ -23,3 +30,13 @@ h1 {
 p {
     padding-left: 40px;
 }
+
+.button_delete{
+    padding-left: 40px;
+    padding-bottom: 15px;
+}
+
+.trash{
+    text-align: right;
+}
+

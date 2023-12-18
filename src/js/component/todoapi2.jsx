@@ -92,17 +92,20 @@ const ToDoApi2 = () => {
         }
     }
      
-        //useEffect (() => {
-        //    getAllTask();
-        //},[])
+        useEffect (() => {
+           getAllTask();
+        },[])
 
 	return (
         <>
 		<div className="container">
-           
-            <button onClick={getAllTask}>Bring List</button>
-            <button onClick={deleteAll}>Delete All</button>
-                        
+
+            <h1>My To Do List</h1>
+
+            <div className="button_bring">
+                <button type="button" class="btn btn-primary" onClick={getAllTask}>Bring List</button>
+            </div>
+                         
 			<ul>
                 <li>
                     <input type="text" placeholder="Remember to do..."
@@ -124,16 +127,20 @@ const ToDoApi2 = () => {
                             <label className="form-check-label" for="flexCheckDefault"></label>     
                         </div> 
                         <p>{item.label}</p>
-                        <button type="button" className="border border-0 float-end"
-                        onClick={()=>deleteOne(index)}>
-                        🗑️
-                        </button>     
+                        <div className="trash">
+                            <button type="button" className="border border-secondary-subtle"
+                            onClick={()=>deleteOne(index)}>🗑️</button>
+                        </div>     
                     </li>
-
                 ))}  
-
             </ul>
+
             <p>{list.length} tasks.</p>
+
+            <div className="button_delete">
+                <button type="button" class="btn btn-danger" onClick={deleteAll}>Delete All</button>
+            </div>
+
 		</div>
         </>
 	); 
