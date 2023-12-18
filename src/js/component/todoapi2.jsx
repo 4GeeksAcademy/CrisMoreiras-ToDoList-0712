@@ -33,17 +33,17 @@ const ToDoApi2 = () => {
         function deleteOne(index){
             const deleteTask = list.filter( (item,i) => index !== i );
             fetch(apiUrl, {
-                method: 'DELETE',
+                method: 'PUT',
                 headers: {
                     "Content-Type": "application/json"
                 },
+                body: JSON.stringify([])
             })
             .then(response => response.json())
             .then(data => {
-                setList(deleteTask);
-                createUser()
+                setList(deleteTask);    
             })
-            }
+        }
    
     const getAllTask = async () => {
         try {
