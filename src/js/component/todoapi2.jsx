@@ -27,7 +27,6 @@ const ToDoApi2 = () => {
         .then(response => response.json())
         .then(data => {
             setList([]);
-            createUser()
         })
         }
 
